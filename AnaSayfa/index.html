@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vault - Arşiv</title>
+    <style>
+        body { 
+            background-color: #0d0d0d; color: #d4d4d4; 
+            font-family: 'Courier New', sans-serif; padding: 40px; 
+        }
+        ul { list-style: none; padding: 0; }
+        li { margin: 15px 0; font-size: 18px; }
+        a { color: #5c9ce6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .restricted { color: #666; cursor: pointer; }
+        .restricted:hover { color: #aa4444; }
+    </style>
+</head>
+<body>
+
+    <h1>Dijital Arşiv</h1>
+    <hr>
+    <p>Görüntülenebilir Klasörler:</p>
+
+    <ul>
+        <li><a href="../Siirler/">📁 Şiirler Klasörü</a></li>
+        <li><span id="mektupLinki">📁 Tanrıya Mektuplar Klasörü</span></li>
+    </ul>
+
+<script>
+    // Giriş ekranında kaydedilen şifreyi hafızadan çekiyoruz
+    const role = sessionStorage.getItem("userRole");
+    const mektupAlani = document.getElementById("mektupLinki");
+
+    // İleride tam yetki vermek istediğin yeni şifreleri buradaki parantezin içine ekleyebilirsin
+    if (role === "esat2008") {
+        mektupAlani.innerHTML = '<a href="../Tanriya-Mektuplar/">📁 Tanrıya Mektuplar Klasörü</a>';
+    } else {
+        mektupAlani.className = "restricted";
+        mektupAlani.onclick = function() {
+            alert("HATA: Bu klasöre erişim yetkiniz yetersiz.");
+        };
+    }
+</script>
+
+</body>
+</html>
